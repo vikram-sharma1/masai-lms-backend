@@ -1,4 +1,5 @@
 const express = require('express')
+require('dotenv').config()
 
 const connect = require('./configs/db')
 
@@ -7,14 +8,22 @@ app.use(express.json())
 
 const assignmentController = require('./controller/assignments.controller')
 const lectureController = require('./controller/lecture.controller')
+const user = require('./controller/user.controller')
+const {register, login} = require('./controller/auth.controller')
 
 app.use('/assignment', assignmentController)
 app.use('/lecture', lectureController)
 
 
+app.post('/register',register)
+app.use('/findUser', user)
+app.post('/login', login)
 
 
-const port = 8080
+
+
+
+const port = process.env.PORT || 8080
 
 
 app.listen(port,async()=>{

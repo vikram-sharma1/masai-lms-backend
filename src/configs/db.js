@@ -2,5 +2,5 @@ const mongoose = require('mongoose')
 
 
 module.exports = () => {
-    return mongoose.connect('mongodb://localhost:27017/auth-mvc')
+    return mongoose.connect('mongodb+srv://masailms:masailms@cluster0.uzitmex.mongodb.net/?retryWrites=true&w=majority')
 }
