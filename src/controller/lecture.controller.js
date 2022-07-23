@@ -25,7 +25,9 @@ router.get("",async(req,res) => {
         const page = req.query.page || 1;
         const size = req.query.size || 5;
         const user = await Lecture.find().skip((page-1)*size).limit(size).lean().exec()
-        return res.send(user)
+        const totalpage =Math.ceil( await Lecture.find().countDocuments() / size)
+        return res.send({user,totalpage})
+        // return res.send(user)
 
     } catch (error) {
         return res.send(error.message)
